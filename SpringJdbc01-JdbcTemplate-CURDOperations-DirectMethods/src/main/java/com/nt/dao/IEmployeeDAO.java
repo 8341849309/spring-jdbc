@@ -18,4 +18,11 @@ public interface IEmployeeDAO {
 	public List<Map<String, Object>> getAllEmployees();
 
 	public List<Map<String, Object>> getEmployeesByDesignations(String des1, String des2, String des3);
+
+	public Integer insertEmployee(String ename, String job, Float sal);
+	
+	public int updateEmployeeSalary(int id,Float newSal);
+	
+	public int deleteEmployee(int id);
+	
 }

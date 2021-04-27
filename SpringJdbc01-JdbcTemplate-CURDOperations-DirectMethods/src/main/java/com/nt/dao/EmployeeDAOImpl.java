@@ -16,7 +16,10 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 	private static final String GET_EMPS_DETAILS_BY_DESGS = "SELECT EMPNO,ENAME,JOB,SAL FROM EMP WHERE JOB IN(?,?,?)";
 	private static final String GET_ALL_EMPS = "SELECT EMPNO,ENAME,JOB,SAL FROM EMP";
 	private static final String GET_EMP_NAME_SALARY = "SELECT ENAME,SAL FROM EMP WHERE EMPNO=?";
-
+	private static final String INSERT_EMP_QUERY = "INSERT INTO EMP(EMPNO,ENAME,JOB,SAL) VALUES(SEQUENCE1.NEXTVAL,?,?,?)";
+	private static final String UPDATE_EMP_SALARY = "UPDATE EMP SET SAL=? WHERE EMPNO=?";
+	private static final String DELETE_EMP_BY_EMPNO = "DELETE FROM EMP WHERE EMPNO=?";
+	
 	public EmployeeDAOImpl(JdbcTemplate jt) {
 		this.jt = jt;
 	}
@@ -56,6 +59,21 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 	public Map<String, Object> getEmployeesNameAndSalary(Integer id) {
 
 		return jt.queryForMap(GET_EMP_NAME_SALARY, id);
+	}
+
+	public Integer insertEmployee(String ename, String job, Float sal) {
+		int count = jt.update(INSERT_EMP_QUERY, ename, job, sal);
+		return count;
+	}
+
+	public int updateEmployeeSalary(int id, Float newSal) {
+		int count = jt.update(UPDATE_EMP_SALARY, newSal, id);
+		return count;
+	}
+
+	public int deleteEmployee(int id) {
+		int count=jt.update(DELETE_EMP_BY_EMPNO, id);
+		return count;
 	}
 
 }

@@ -13,6 +13,8 @@ public class JdbcTemplateTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("com/nt/cfgs/applicationContext.xml");
 
 		EmployeeDAOImpl dao = ctx.getBean("empDao", EmployeeDAOImpl.class);
+		
+		/*
 		System.out.println("Total Employees Count:: " + dao.getEmployeesCount());
 
 		System.out.println("--------------------");
@@ -33,6 +35,18 @@ public class JdbcTemplateTest {
 		System.out.println("--------------------");
 		System.out.println("All Employees Names ::" + dao.getEmployeesNameAndSalary(1));
 
+		System.out.println("--------------------");
+		System.out.println("Insert Employee ::" + dao.insertEmployee("Kishore", "SI", 30000.0f));
+	
+		System.out.println("--------------------------");
+		System.out.println("Update Employee Salary:: "+dao.updateEmployeeSalary(1, 36000.0f));
+		*/
+		
+		System.out.println("--------------------------");
+		System.out.println("Delete Employee:: "+dao.deleteEmployee(2));
+
+		
+		
 		((AbstractApplicationContext) ctx).close();
 	}
 
